@@ -13,9 +13,6 @@ class PlayerInfo {
         this.startingPlayer = player1;
         this.connectToWin = 4;
 
-        // initialize new board object
-        this.board = new Board();
-
         // set current player i.e player1
         this.currentPlayer = player1;
     }
@@ -40,11 +37,4 @@ Player.prototype.getPlayer2 = function() {
  */
 Player.prototype.getCurrentPlayer = function() {
     return this.currentPlayer;
-}
-
-/*
- * function to get the board object
- */
-Player.prototype.getBoard = function() {
-    return this.board;
 }

@@ -24,7 +24,7 @@ Board.prototype.initLayout = function(element) {
     for (var row = 0; row < 6; row++) {
         var tr = $("<tr></tr>");
         for (var col = 0; col < 7; col++) {
-            var td = $("<td><button class='button'></td>");
+            var td = $("<td><button class='gameButton'></td>");
             tr.append(td);
         }
 
