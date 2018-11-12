@@ -1,9 +1,30 @@
-.gameButton.black {
-    background: #000;
-    /* background: linear-gradient(to bottom, #333 0%,#000000 100%); */
+.heading {
+    text-align: center;
 }
 
-.gameButton.red {
-    background: #ad0505;
-    /* background: linear-gradient(to bottom, #ff1616 0%,#ad0505 100%); */
+.currentPlayerText.black {
+    color: #000000;
+}
+
+.currentPlayerText.red {
+    color: #ff0000;
+}
+
+.board {
+    margin:0 auto;
+}
+
+.board .gameButton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #D3D3D3;
+}
+
+.board .gameButton.black {
+    background: #000000;
+}
+
+.board .gameButton.red {
+    background: #ff0000;
 }

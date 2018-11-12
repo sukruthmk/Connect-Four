@@ -34,6 +34,9 @@ Main.prototype.initUI = function() {
 
     // Initialize board layout
     board.initLayout(boardContainer);
+
+    // Initialize current player text
+    this.updateCurrentPlayerText();
 }
 
 /*
@@ -76,10 +79,7 @@ Main.prototype.registerPlayerClickEvent = function() {
             return;
         }
 
-        // debug statements
-        console.log("row: " + currentRow);
-        console.log("col: " + col);
-
+        // update color in the table for the row
         self.updateColor(currentRow, col);
 
         if(self.checkWin()) {
@@ -125,17 +125,29 @@ Main.prototype.addToMatrix = function(row, col) {
  */
 Main.prototype.checkWin = function() {
     var board = this.getBoard();
+    var playerInfo = this.getPlayerInfo();
+    var currentPlayer = playerInfo.getCurrentPlayer();
 
     // check the game is won
     if(board.verticalWin() || board.horizontalWin() || board.diagonalWin()) {
-        alert("won");
+        alert(currentPlayer.getName()+" has won");
+        this.detachEvents();
         return true;
     } else if(board.draw()) { //check if it is draw
-        alert("draw");
+        alert("Game is draw");
+        this.detachEvents();
         return true;
     }
 
     return false;
+}
+
+/*
+ * function to turn off events
+ */
+Main.prototype.detachEvents = function() {
+    // de-register event for click on button
+    $(".gameButton").off("click");
 }
 
 
@@ -145,8 +157,28 @@ Main.prototype.checkWin = function() {
 Main.prototype.updateCurrentPlayer = function() {
     var playerInfo = this.getPlayerInfo();
     playerInfo.updateCurrentPlayer();
+
+    this.updateCurrentPlayerText();
 }
 
+/*
+ * function to update the current player text
+ */
+Main.prototype.updateCurrentPlayerText = function() {
+    var playerInfo = this.getPlayerInfo();
+    var currentPlayer = playerInfo.getCurrentPlayer();
+    var element = $("#currentPlayerText");
+
+    // remove all other old classes
+    element.removeClass();
+
+    // add the class for specific player
+    element.addClass("currentPlayerText");
+    element.addClass(currentPlayer.getColor());
+
+    // update the name of current player
+    element.text(currentPlayer.getName());
+}
 
 // Initialize main on document ready
 $(document).ready(function() {
