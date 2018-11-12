@@ -76,7 +76,11 @@ Main.prototype.registerPlayerClickEvent = function() {
             return;
         }
 
-        self.updateColor(currentRow);
+        // debug statements
+        console.log("row: " + currentRow);
+        console.log("col: " + col);
+
+        self.updateColor(currentRow, col);
 
         if(self.checkWin()) {
             return;
@@ -86,7 +90,7 @@ Main.prototype.registerPlayerClickEvent = function() {
     });
 }
 
-Main.prototype.updateColor = function(row) {
+Main.prototype.updateColor = function(row, col) {
     var playerInfo = this.getPlayerInfo();
 
     // get the color for current player
@@ -94,7 +98,7 @@ Main.prototype.updateColor = function(row) {
     var color = currentPlayer.getColor();
 
     // select the element according to row
-    var query = "*[data-row='"+row+"']";
+    var query = "[data-row='"+row+"'][data-col='"+col+"']";
     var element = $("#board").find(query);
 
     // add the color class to element

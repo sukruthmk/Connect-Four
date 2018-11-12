@@ -52,7 +52,7 @@ PlayerInfo.prototype.updateCurrentPlayer = function() {
     var currentPlayer = this.getCurrentPlayer();
 
     // check if it is first player
-    if (currentpalyer == this.getPlayer1()) {
+    if (currentPlayer == this.getPlayer1()) {
         // swap the turn to second player
         this.setCurrentPlayer(this.getPlayer2());
     } else {

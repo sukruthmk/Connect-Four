@@ -30,9 +30,16 @@ Board.prototype.initLayout = function(element) {
         var tr = $("<tr></tr>");
         for (var col = 0; col < this.maxCol; col++) {
             var td = $("<td></td>");
-            var button = $("<button class='gameButton'>");
-            button.data("row", this.maxRow - 1 - row);
-            button.data("col", col);
+
+            // calculate row in reverse to match the matrix
+            var currentRow = this.maxRow - 1 - row;
+            var currentCol = col;
+
+            // create a new button with data attributes for row and col
+            var buttonString = "<button class='gameButton' data-row='"+currentRow+"' data-col='"+currentCol+"' > </button>";
+            var button = $(buttonString);
+
+            // append it to parent elements
             td.append(button);
             tr.append(td);
         }
@@ -52,7 +59,8 @@ Board.prototype.addToMatrix = function(row, col, number) {
     for (var i = 0; i < this.maxRow; i++) {
         if (matrix[i][col] == 0) {
             currentRow = i;
-            matrix[i][col] == number;
+            matrix[currentRow][col] = number;
+            break;
         }
     }
 
@@ -64,6 +72,13 @@ Board.prototype.addToMatrix = function(row, col, number) {
  */
 Board.prototype.getMatrix = function() {
     return this.matrix;
+}
+
+/*
+ * function to set the value of board matrix
+ */
+Board.prototype.setMatrix = function(matrix) {
+    this.matrix = matrix;
 }
 
 /*
@@ -87,6 +102,7 @@ Board.prototype.verticalWin = function() {
     var oldValue = null;
     var count = 1;
     var currentValue = null;
+    var matrix = this.getMatrix();
 
     // loop vertically
     for (var col = 0; col < this.maxCol; col++) {
@@ -120,6 +136,7 @@ Board.prototype.horizontalWin = function() {
     var oldValue = null;
     var count = 1;
     var currentValue = null;
+    var matrix = this.getMatrix();
 
     // loop horizontally
     for (var row = 0; row < this.maxRow; row++) {
@@ -172,7 +189,7 @@ Board.prototype.diagonalBottomRight = function() {
     for (var row = 0; row < this.maxRow; row++) {
         var currentRow = row;
         var currentCol = 0;
-        while (currentRow <= this.maxRow && currentCol <= this.maxCol) {
+        while (currentRow < this.maxRow && currentCol < this.maxCol) {
             currentValue = matrix[currentRow][currentCol];
 
             // update count value based on oldValue and currentValue comparision
@@ -210,7 +227,7 @@ Board.prototype.diagonalBottomLeft = function() {
     for (var row = 0; row < this.maxRow; row++) {
         var currentRow = row;
         var currentCol = 0;
-        while (currentRow >= 0 && currentCol <= this.maxCol) {
+        while (currentRow >= 0 && currentCol < this.maxCol) {
             currentValue = matrix[currentRow][currentCol];
 
             // update count value based on oldValue and currentValue comparision
@@ -245,10 +262,10 @@ Board.prototype.diagonalTopRight = function() {
     var currentValue = null;
     var matrix = this.getMatrix();
 
-    for (var col = 0; row < this.maxCol; col++) {
+    for (var col = 0; col < this.maxCol; col++) {
         var currentRow = 0;
         var currentCol = col;
-        while (currentRow <= this.maxRow && currentCol <= this.maxCol) {
+        while (currentRow < this.maxRow && currentCol < this.maxCol) {
             currentValue = matrix[currentRow][currentCol];
 
             // update count value based on oldValue and currentValue comparision
@@ -277,16 +294,16 @@ Board.prototype.diagonalTopRight = function() {
 /*
  * function to check diagonal win from bottom left
  */
-Board.prototype.diagonalTopRight = function() {
+Board.prototype.diagonalTopLeft = function() {
     var oldValue = null;
     var count = 1;
     var currentValue = null;
     var matrix = this.getMatrix();
 
-    for (var col = 0; row < this.maxCol; col++) {
+    for (var col = 0; col < this.maxCol; col++) {
         var currentRow = this.maxRow - 1;
         var currentCol = col;
-        while (currentRow >= 0 && currentCol <= this.maxCol) {
+        while (currentRow >= 0 && currentCol < this.maxCol) {
             currentValue = matrix[currentRow][currentCol];
 
             // update count value based on oldValue and currentValue comparision
@@ -322,7 +339,7 @@ Board.prototype.draw = function() {
     // check if all the values are filled in matrix
     for (var row = 0; row < this.maxRow; row++) {
         for (var col = 0; col < this.maxCol; col++) {
-            if (martrix[row][col] == 0) {
+            if (matrix[row][col] == 0) {
                 return false;
             }
         }
