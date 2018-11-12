@@ -36,7 +36,7 @@ Board.prototype.initLayout = function(element) {
             var currentCol = col;
 
             // create a new button with data attributes for row and col
-            var buttonString = "<button class='gameButton' data-row='"+currentRow+"' data-col='"+currentCol+"' > </button>";
+            var buttonString = "<button class='gameButton' data-row='" + currentRow + "' data-col='" + currentCol + "' > </button>";
             var button = $(buttonString);
 
             // append it to parent elements

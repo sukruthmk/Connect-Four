@@ -68,13 +68,13 @@ Main.prototype.registerPlayerClickEvent = function() {
         var element = $(this);
 
         // extract the row and column information
-        var row  = element.data("row");
+        var row = element.data("row");
         var col = element.data("col");
 
         // Added to the bottom row and column in the matrix
         var currentRow = self.addToMatrix(row, col);
 
-        if(currentRow > 5) {
+        if (currentRow > 5) {
             alert("Row is full");
             return;
         }
@@ -82,7 +82,7 @@ Main.prototype.registerPlayerClickEvent = function() {
         // update color in the table for the row
         self.updateColor(currentRow, col);
 
-        if(self.checkWin()) {
+        if (self.checkWin()) {
             return;
         }
 
@@ -98,7 +98,7 @@ Main.prototype.updateColor = function(row, col) {
     var color = currentPlayer.getColor();
 
     // select the element according to row
-    var query = "[data-row='"+row+"'][data-col='"+col+"']";
+    var query = "[data-row='" + row + "'][data-col='" + col + "']";
     var element = $("#board").find(query);
 
     // add the color class to element
@@ -129,11 +129,11 @@ Main.prototype.checkWin = function() {
     var currentPlayer = playerInfo.getCurrentPlayer();
 
     // check the game is won
-    if(board.verticalWin() || board.horizontalWin() || board.diagonalWin()) {
-        alert(currentPlayer.getName()+" has won");
+    if (board.verticalWin() || board.horizontalWin() || board.diagonalWin()) {
+        alert(currentPlayer.getName() + " has won");
         this.detachEvents();
         return true;
-    } else if(board.draw()) { //check if it is draw
+    } else if (board.draw()) { //check if it is draw
         alert("Game is draw");
         this.detachEvents();
         return true;
