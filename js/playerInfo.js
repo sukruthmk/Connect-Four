@@ -4,8 +4,8 @@
 class PlayerInfo {
     constructor() {
         // create two new player variables
-        var player1 = new Player("Player 1", "black");
-        var player2 = new Player("Player 2", "red");
+        var player1 = new Player("Player 1", "black", 1);
+        var player2 = new Player("Player 2", "red", 2);
 
         // initialize data to class variables
         this.player1 = player1;
@@ -37,4 +37,27 @@ Player.prototype.getPlayer2 = function() {
  */
 Player.prototype.getCurrentPlayer = function() {
     return this.currentPlayer;
+}
+
+/*
+ * function to set the current palyer object
+ */
+Player.prototype.setCurrentPlayer = function(player) {
+    this.currentPlayer = player;
+}
+
+/*
+ * function to update/swap current player object
+ */
+Player.prototype.updateCurrentPlayer = function() {
+    var currentPlayer = this.getCurrentPlayer();
+
+    // check if it is first player
+    if(currentpalyer == this.getPlayer1()) {
+        // swap the turn to second player
+        this.setCurrentPlayer(this.getPlayer2());
+    } else {
+        // swap the turn to first player
+        this.setCurrentPlayer(this.getPlayer1());
+    }
 }

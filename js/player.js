@@ -5,9 +5,10 @@ class Player {
     /*
      * Constructor to initialize values
      */
-    constructor(name, color) {
+    constructor(name, color, number) {
         this.name = name;
         this.color = color;
+        this.number = number;
     }
 }
 
@@ -23,6 +24,13 @@ Player.prototype.getName = function() {
  */
 Player.prototype.getColor = function() {
     return this.color;
+}
+
+/*
+ * Function to get the number for the player
+ */
+Player.prototype.getNumber = function() {
+    return this.number;
 }
 
 /*

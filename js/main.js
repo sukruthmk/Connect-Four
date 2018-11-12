@@ -19,6 +19,13 @@ Main.prototype.getBoard = function() {
 }
 
 /*
+ * fucntion to get the playerInfo object
+ */
+Main.prototype.getPlayerInfo = function() {
+    return this.playerInfo;
+}
+
+/*
  * fucntion to initialize UI
  */
 Main.prototype.initUI = function() {
@@ -51,10 +58,74 @@ Main.prototype.registerEvents = function() {
  * fuction to register click on buttons
  */
 Main.prototype.registerPlayerClickEvent = function() {
-    $(".gameButton").on("click", function() {
+    var self = this;
 
+    // register event for click on button
+    $(".gameButton").on("click", function(e) {
+        var element = $(this);
+
+        // extract the row and column information
+        var row  = element.data("row");
+        var col = element.data("col");
+
+        // Added to the bottom row and column in the matrix
+        var currentRow = self.addToMatrix(row, col);
+
+        if(currentRow > 5) {
+            alert("Row is full");
+            return;
+        }
+
+        if(self.checkWin()) {
+            return;
+        }
+
+        self.updateCurrentPlayer();
     });
 }
+
+/*
+ * function to add to matix
+ */
+Main.prototype.addToMatrix = function(row, col) {
+    var board = this.getBoard();
+    var playerInfo = this.getPlayerInfo();
+    var currentPlayer = playerInfo.getCurrentPlayer();
+    var currentPlayerNumber = currentPlayer.getNumber();
+
+    // update matrix to the player
+    var currentRow = board.addToMatrix(row, col, currentPlayerNumber);
+
+    return currentRow;
+}
+
+/*
+ * function check to game win
+ */
+Main.prototype.checkWin = function() {
+    var board = this.getBoard();
+
+    // check the game is won
+    if(board.verticalWin() || board.horizontalWin() || board.diagonalWin()) {
+        alert("won");
+        return true;
+    } else if(board.draw()) { //check if it is draw
+        alert("draw");
+        return true;
+    }
+
+    return false;
+}
+
+
+/*
+ * function check to update the currentpalyer
+ */
+Main.prototype.updateCurrentPlayer = function() {
+    var playerInfo = this.getPlayerInfo();
+    playerInfo.updateCurrentPlayer();
+}
+
 
 // Initialize main on document ready
 $(document).ready(function() {

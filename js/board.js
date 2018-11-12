@@ -24,12 +24,34 @@ Board.prototype.initLayout = function(element) {
     for (var row = 0; row < 6; row++) {
         var tr = $("<tr></tr>");
         for (var col = 0; col < 7; col++) {
-            var td = $("<td><button class='gameButton'></td>");
+            var td = $("<td></td>");
+            var button = $("<button class='gameButton'>");
+            button.data("row", 5-row);
+            button.data("col", col);
+            td.append(button);
             tr.append(td);
         }
 
         element.append(tr);
     }
+}
+
+/*
+ * function to add bottom row and column value to matrix
+ */
+Board.prototype.addToMatrix = function(row, col, number) {
+    var matrix = this.getMatrix();
+    var currentRow = 6;
+
+    // find the bottom row in the matrix with empty value
+    for(var i=0; i<6; i++) {
+        if(matrix[i][col] == 0) {
+            currentRow = i;
+            matrix[i][col] == number;
+        }
+    }
+
+    return currentRow;
 }
 
 /*
