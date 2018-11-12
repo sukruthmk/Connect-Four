@@ -20,35 +20,35 @@ class PlayerInfo {
 /*
  * function to get the object of player 1
  */
-Player.prototype.getPlayer1 = function() {
+PlayerInfo.prototype.getPlayer1 = function() {
     return this.player1;
 }
 
 /*
  * function to get the object of player 2
  */
-Player.prototype.getPlayer2 = function() {
+PlayerInfo.prototype.getPlayer2 = function() {
     return this.player2;
 }
 
 /*
  * function to get the current palyer object
  */
-Player.prototype.getCurrentPlayer = function() {
+PlayerInfo.prototype.getCurrentPlayer = function() {
     return this.currentPlayer;
 }
 
 /*
  * function to set the current palyer object
  */
-Player.prototype.setCurrentPlayer = function(player) {
+PlayerInfo.prototype.setCurrentPlayer = function(player) {
     this.currentPlayer = player;
 }
 
 /*
  * function to update/swap current player object
  */
-Player.prototype.updateCurrentPlayer = function() {
+PlayerInfo.prototype.updateCurrentPlayer = function() {
     var currentPlayer = this.getCurrentPlayer();
 
     // check if it is first player
