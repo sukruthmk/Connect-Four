@@ -1,0 +1,9 @@
+.gameButton.black {
+    background: #000;
+    /* background: linear-gradient(to bottom, #333 0%,#000000 100%); */
+}
+
+.gameButton.red {
+    background: #ad0505;
+    /* background: linear-gradient(to bottom, #ff1616 0%,#ad0505 100%); */
+}
