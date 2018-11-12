@@ -26,12 +26,12 @@ class Board {
  * function to initialize the board ui
  */
 Board.prototype.initLayout = function(element) {
-    for (var row = 0; row < 6; row++) {
+    for (var row = 0; row < this.maxRow; row++) {
         var tr = $("<tr></tr>");
-        for (var col = 0; col < 7; col++) {
+        for (var col = 0; col < this.maxCol; col++) {
             var td = $("<td></td>");
             var button = $("<button class='gameButton'>");
-            button.data("row", 5 - row);
+            button.data("row", this.maxRow - 1 - row);
             button.data("col", col);
             td.append(button);
             tr.append(td);
@@ -46,10 +46,10 @@ Board.prototype.initLayout = function(element) {
  */
 Board.prototype.addToMatrix = function(row, col, number) {
     var matrix = this.getMatrix();
-    var currentRow = 6;
+    var currentRow = this.maxRow;
 
     // find the bottom row in the matrix with empty value
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < this.maxRow; i++) {
         if (matrix[i][col] == 0) {
             currentRow = i;
             matrix[i][col] == number;
@@ -89,8 +89,8 @@ Board.prototype.verticalWin = function() {
     var currentValue = null;
 
     // loop vertically
-    for (var col = 0; col < 7; col++) {
-        for (var row = 0; row < 6; row++) {
+    for (var col = 0; col < this.maxCol; col++) {
+        for (var row = 0; row < this.maxRow; row++) {
             currentValue = matrix[row][col];
 
             // update count value based on oldValue and currentValue comparision
@@ -122,8 +122,8 @@ Board.prototype.horizontalWin = function() {
     var currentValue = null;
 
     // loop horizontally
-    for (var row = 0; row < 6; row++) {
-        for (var col = 0; col < 7; col++) {
+    for (var row = 0; row < this.maxRow; row++) {
+        for (var col = 0; col < this.maxCol; col++) {
             currentValue = matrix[row][col];
 
             // update count value based on oldValue and currentValue comparision
@@ -316,8 +316,8 @@ Board.prototype.draw = function() {
     var matrix = this.getMatrix();
 
     // check if all the values are filled in matrix
-    for (var row = 0; row < 6; row++) {
-        for (var col = 0; col < 7; col++) {
+    for (var row = 0; row < this.maxRow; row++) {
+        for (var col = 0; col < this.maxCol; col++) {
             if (martrix[row][col] == 0) {
                 return false;
             }
