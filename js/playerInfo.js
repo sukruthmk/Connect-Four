@@ -11,7 +11,6 @@ class PlayerInfo {
         this.player1 = player1;
         this.player2 = player2;
         this.startingPlayer = player1;
-        this.connectToWin = 4;
 
         // set current player i.e player1
         this.currentPlayer = player1;
@@ -53,7 +52,7 @@ Player.prototype.updateCurrentPlayer = function() {
     var currentPlayer = this.getCurrentPlayer();
 
     // check if it is first player
-    if(currentpalyer == this.getPlayer1()) {
+    if (currentpalyer == this.getPlayer1()) {
         // swap the turn to second player
         this.setCurrentPlayer(this.getPlayer2());
     } else {
