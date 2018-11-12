@@ -167,6 +167,7 @@ Board.prototype.diagonalBottomRight = function() {
     var oldValue = null;
     var count = 1;
     var currentValue = null;
+    var matrix = this.getMatrix();
 
     for (var row = 0; row < this.maxRow; row++) {
         var currentRow = row;
@@ -204,6 +205,7 @@ Board.prototype.diagonalBottomLeft = function() {
     var oldValue = null;
     var count = 1;
     var currentValue = null;
+    var matrix = this.getMatrix();
 
     for (var row = 0; row < this.maxRow; row++) {
         var currentRow = row;
@@ -241,6 +243,7 @@ Board.prototype.diagonalTopRight = function() {
     var oldValue = null;
     var count = 1;
     var currentValue = null;
+    var matrix = this.getMatrix();
 
     for (var col = 0; row < this.maxCol; col++) {
         var currentRow = 0;
@@ -278,6 +281,7 @@ Board.prototype.diagonalTopRight = function() {
     var oldValue = null;
     var count = 1;
     var currentValue = null;
+    var matrix = this.getMatrix();
 
     for (var col = 0; row < this.maxCol; col++) {
         var currentRow = this.maxRow - 1;
