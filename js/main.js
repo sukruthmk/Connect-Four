@@ -76,12 +76,29 @@ Main.prototype.registerPlayerClickEvent = function() {
             return;
         }
 
+        self.updateColor(currentRow);
+
         if(self.checkWin()) {
             return;
         }
 
         self.updateCurrentPlayer();
     });
+}
+
+Main.prototype.updateColor = function(row) {
+    var playerInfo = this.getPlayerInfo();
+
+    // get the color for current player
+    var currentPlayer = playerInfo.getCurrentPlayer();
+    var color = currentPlayer.getColor();
+
+    // select the element according to row
+    var query = "*[data-row='"+row+"']";
+    var element = $("#board").find(query);
+
+    // add the color class to element
+    element.addClass(color);
 }
 
 /*
